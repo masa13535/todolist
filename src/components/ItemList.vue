@@ -34,9 +34,13 @@ export default {
     const newItemPrice = ref(0);
 
     const addItem = () => {
-      items.value.push({ name: newItemName.value, price: newItemPrice.value });
-      newItemName.value = "";
-      newItemPrice.value = 0;
+      if (newItemName.value === "") {
+        alert("名前を入力してください");
+      } else {
+        items.value.push({ name: newItemName.value, price: newItemPrice.value });
+        newItemName.value = "";
+        newItemPrice.value = 0;
+      }
     };
 
     return { items, newItemName, newItemPrice, addItem };
