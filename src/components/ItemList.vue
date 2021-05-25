@@ -2,7 +2,7 @@
   <div>
     <h2>TODOリスト</h2>
     <div v-for="item in items" :key="item.name">
-      <div class="item" :class="{ over500: item.price >= 500 }">
+      <div class="item">
         <div class="name">名前: {{ item.name }}</div>
       </div>
     </div>
@@ -41,8 +41,4 @@ export default {
 };
 </script>
 
-<style>
-.over500 {
-  color: red;
-}
-</style>
+<style></style>
