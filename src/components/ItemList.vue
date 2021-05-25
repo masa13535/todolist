@@ -35,6 +35,8 @@ export default {
 
     const addItem = () => {
       items.value.push({ name: newItemName.value, price: newItemPrice.value });
+      newItemName.value = "";
+      newItemPrice.value = 0;
     };
 
     return { items, newItemName, newItemPrice, addItem };
