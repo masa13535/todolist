@@ -15,7 +15,7 @@ import { ref } from "vue";
 
 export default {
     setup() {
-        count items = ref([
+        const items = ref([
             { name: "たまご", price: 100 },
             { name: "りんご", price: 160 },
         ]);
