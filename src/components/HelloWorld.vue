@@ -8,7 +8,7 @@
 
 <script>
 import Counter from "./Counter.vue";
-import ItemList from "./Item List.vue";
+import ItemList from "./ItemList.vue";
 
 export default {
   components: {
