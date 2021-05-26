@@ -1,17 +1,29 @@
 <template>
   <div>
     <h2>TODOリスト</h2>
-    <div v-for="item in items" :key="item.name">
-      <div class="item">
-        <div class="name">名前: {{ item.name }}</div>
+    <div>
+      <h3>未完了タスク</h3>
+      <div v-for="task in tasks" :key="task.name">
+        <div v-if="task.isFinished === false" class="task">
+          <div class="name">{{ task.name }}</div>
+          <button @click="finishTask(task.id)">完了！</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>完了タスク</h3>
+      <div v-for="task in tasks" :key="task.name">
+        <div v-if="task.isFinished === true" class="task">
+          <div class="name">{{ task.name }}</div>
+        </div>
       </div>
     </div>
     <div>
       <label>
         名前
-        <input v-model="newItemName" type="text" />
+        <input v-model="newTaskName" type="text" />
       </label>
-      <button @click="addItem">add</button>
+      <button @click="addTask">add</button>
     </div>
   </div>
 </template>
@@ -21,22 +33,37 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const items = ref([
-      { name: "たまご"},
-      { name: "りんご"},
-    ]);
-    const newItemName = ref("");
+    const newId = ref(2);
 
-    const addItem = () => {
-      if (newItemName.value === "") {
+    const tasks = ref([
+      { id: 0, name: "たまご", isFinished: false },
+      { id: 1, name: "りんご", isFinished: false },
+    ]);
+    const newTaskName = ref("");
+
+    const addTask = () => {
+      if (newTaskName.value === "") {
         alert("名前を入力してください");
       } else {
-        items.value.push({ name: newItemName.value});
-        newItemName.value = "";
+        tasks.value.push({
+          id: newId.value,
+          name: newTaskName.value,
+          isFinished: false,
+        });
+        newTaskName.value = "";
+        newId.value = newId.value + 1;
       }
     };
 
-    return { items, newItemName, addItem };
+    const finishTask = (id) => {
+      tasks.value.forEach((value, index) => {
+        if (value.id === id) {
+          value.isFinished = true;
+        }
+      });
+    };
+
+    return { tasks, newTaskName, addTask, finishTask };
   },
 };
 </script>
