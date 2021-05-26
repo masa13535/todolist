@@ -56,7 +56,7 @@ export default {
     };
 
     const finishTask = (id) => {
-      tasks.value.forEach((value, index) => {
+      tasks.value.forEach((value) => {
         if (value.id === id) {
           value.isFinished = true;
         }
